@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct AddToAppSampleApp: App {
+    @State var flutterDependencies = FlutterDependencies()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(flutterDependencies)
         }
     }
 }
