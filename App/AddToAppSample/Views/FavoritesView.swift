@@ -2,6 +2,6 @@ import SwiftUI
 
 struct FavoritesView: View {
     var body: some View {
-        FlutterView(initialRoute: "/")
+        FlutterView(initialRoute: "/favorites")
     }
 }
