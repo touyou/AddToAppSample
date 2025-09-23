@@ -7,45 +7,20 @@
 
 import SwiftUI
 import Flutter
-import FlutterPluginRegistrant
 
 struct ContentView: View {
     @Environment(FlutterDependencies.self) var flutterDependencies
     
     var body: some View {
         TabView {
-            Tab {
-                UIViewControllerRepresenter { _ in
-                    flutterDependencies.makeFlutterViewController(withInitialRoute: "/")
-                }
-            } label: {
-                Label(title: {
-                    Text("Home")
-                }, icon: {
-                    Image(systemName: "house.fill")
-                })
+            Tab("Home", systemImage: "house.fill") {
+                HomeView()
             }
-            Tab {
-                UIViewControllerRepresenter { _ in
-                    flutterDependencies.makeFlutterViewController(withInitialRoute: "/")
-                }
-            } label: {
-                Label(title: {
-                    Text("Favorite")
-                }, icon: {
-                    Image(systemName: "heart.fill")
-                })
+            Tab("Favorites", systemImage: "heart.fill") {
+                FavoritesView()
             }
-            Tab {
-                UIViewControllerRepresenter { _ in
-                    flutterDependencies.makeFlutterViewController(withInitialRoute: "/")
-                }
-            } label: {
-                Label(title: {
-                    Text("Search")
-                }, icon: {
-                    Image(systemName: "magnifyingglass")
-                })
+            Tab("Search", systemImage: "magnifyingglass", role: .search) {
+                SearchView()
             }
         }
     }
