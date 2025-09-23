@@ -48,8 +48,8 @@
 		46453AFF2E7FCA3700B5F6FD /* Exceptions for "AddToAppSample" folder in "AddToAppSample" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Info-Debug.plist",
-				"Info-Release.plist",
+				"App/Info-Debug.plist",
+				"App/Info-Release.plist",
 			);
 			target = 46453AC72E7FB99500B5F6FD /* AddToAppSample */;
 		};
@@ -553,7 +553,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "AddToAppSample/Info-$(CONFIGURATION).plist";
+				INFOPLIST_FILE = "AddToAppSample/App/Info-$(CONFIGURATION).plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -600,7 +600,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "AddToAppSample/Info-$(CONFIGURATION).plist";
+				INFOPLIST_FILE = "AddToAppSample/App/Info-$(CONFIGURATION).plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
