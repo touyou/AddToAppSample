@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import Flutter
+import FlutterPluginRegistrant
 
 @main
 struct AddToAppSampleApp: App {
-    @State var flutterDependencies = FlutterDependencies()
+    @State private var flutterDependencies = FlutterDependencies()
+    @State private var taskPresenter = TaskPresenter()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(flutterDependencies)
+                .environment(taskPresenter)
         }
     }
 }

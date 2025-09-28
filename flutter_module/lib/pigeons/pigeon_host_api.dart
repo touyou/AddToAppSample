@@ -26,6 +26,8 @@ abstract class TaskHostApi {
   @async
   List<Item> getItems();
 
+  void toggleShowAddSheet();
+
   @SwiftFunction('toggleFavorite(id:isFavorite:)')
   void toggleFavorite(int id, bool isFavorite);
 
