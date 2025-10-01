@@ -29,6 +29,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_hooks: ^0.21.3+1
   pigeon: ^26.0.1
+  flutter_deck:
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +50,8 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

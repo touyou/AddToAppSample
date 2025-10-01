@@ -12,10 +12,14 @@ struct ContentView: View {
             Tab("Favorites", systemImage: "heart.fill") {
                 FavoritesView()
             }
+            Tab("Slide", systemImage: "inset.filled.rectangle.and.person.filled") {
+                SlideView()
+            }
             Tab("Search", systemImage: "magnifyingglass", role: .search) {
                 SearchView()
             }
         }
+        .tabViewStyle(.sidebarAdaptable)
     }
 }
 
