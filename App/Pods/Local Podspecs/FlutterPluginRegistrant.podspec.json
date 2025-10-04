@@ -26,6 +26,8 @@
     "DEFINES_MODULE": "YES"
   },
   "dependencies": {
-    "Flutter": []
+    "Flutter": [],
+    "cupertino_native": [],
+    "path_provider_foundation": []
   }
 }

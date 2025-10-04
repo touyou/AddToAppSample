@@ -11,14 +11,13 @@ import FlutterPluginRegistrant
 
 @main
 struct AddToAppSampleApp: App {
-    @State private var flutterDependencies = FlutterDependencies()
-    @State private var taskPresenter = TaskPresenter()
+    @State private var flutterDependencies = FlutterDependencies(taskPresenter: TaskPresenter())
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(flutterDependencies)
-                .environment(taskPresenter)
+                .environment(flutterDependencies.taskPresenter)
         }
     }
 }
