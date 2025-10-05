@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_module/components/item_list_tile.dart';
 import 'package:flutter_module/pigeons/pigeon_flutter_api.g.dart';
 import 'package:flutter_module/pigeons/pigeon_host_api.g.dart';
 import 'package:flutter_module/pigeons/task_flutter_api_impl.dart';
@@ -47,20 +47,7 @@ class FavoritesPage extends HookWidget {
           SliverList.builder(
             itemBuilder: (context, index) {
               final item = items.value[index];
-              return ListTile(
-                title: Text(item.title),
-                trailing: IconButton(
-                  onPressed: () {
-                    hostApi.toggleFavorite(item.id, !item.isFavorite);
-                    hostApi.updateItemsIfNeeded();
-                  },
-                  icon: Icon(
-                    item.isFavorite
-                        ? CupertinoIcons.heart_fill
-                        : CupertinoIcons.heart,
-                  ),
-                ),
-              );
+              return ItemListTile(item: item, hostApi: hostApi);
             },
             itemCount: items.value.length,
           ),

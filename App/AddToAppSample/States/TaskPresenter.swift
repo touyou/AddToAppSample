@@ -60,7 +60,7 @@ class TaskPresenter: TaskHostApi {
     }
     
     func getItems(completion: @escaping (Result<[Item], any Error>) -> Void) {
-       let pigeonItems = items.map(\.item)
+        let pigeonItems = items.map(\.item)
         completion(.success(pigeonItems))
     }
     
