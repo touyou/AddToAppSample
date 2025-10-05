@@ -1,15 +1,29 @@
 import SwiftUI
+import Observation
 import Flutter
 import FlutterPluginRegistrant
 
 @Observable
 class FlutterDependencies {
     private let flutterEngineGroup = FlutterEngineGroup(name: "flutter engine", project: nil)
-    let taskPresenter: TaskPresenter
+    @ObservationIgnored lazy var taskPresenter: TaskPresenter = {
+        TaskPresenter(onUpdateItems: { [weak self] in
+            guard let self = self else { return }
+            self.flutterApis.forEach { api in
+                api.onItemsUpdated(completion: { result in
+                    switch result {
+                    case .success:
+                        break
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                })
+            }
+        })
+    }()
     var flutterApis: [TaskFlutterApi]
     
-    init(taskPresenter: TaskPresenter) {
-        self.taskPresenter = taskPresenter
+    init() {
         self.flutterApis = []
     }
     
@@ -21,3 +35,4 @@ class FlutterDependencies {
         return FlutterViewController(engine: engine, nibName: nil, bundle: nil)
     }
 }
+

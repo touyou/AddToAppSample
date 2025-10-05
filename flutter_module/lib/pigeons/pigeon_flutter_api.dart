@@ -10,5 +10,5 @@ import 'package:pigeon/pigeon.dart';
 )
 @FlutterApi()
 abstract class TaskFlutterApi {
-  void onItemAdded();
+  void onItemsUpdated();
 }

@@ -46,6 +46,13 @@ class TaskPresenter: TaskHostApi {
     @AppStorage("items")
     var items: [StorageItem] = []
     
+    @ObservationIgnored
+    var onUpdateItems: () -> Void = { }
+    
+    init(onUpdateItems: @escaping () -> Void) {
+        self.onUpdateItems = onUpdateItems
+    }
+    
     func addItem(_ title: String) throws {
         let newItem = StorageItem(id: Int64.random(in: Int64.min..<Int64.max), title: title, isDone: false, isFavorite: false)
         items.append(newItem)
@@ -55,6 +62,10 @@ class TaskPresenter: TaskHostApi {
     func getItems(completion: @escaping (Result<[Item], any Error>) -> Void) {
        let pigeonItems = items.map(\.item)
         completion(.success(pigeonItems))
+    }
+    
+    func updateItemsIfNeeded() throws {
+        onUpdateItems()
     }
     
     func toggleShowAddSheet() throws {

@@ -46,7 +46,7 @@ class _PigeonCodec extends StandardMessageCodec {
 abstract class TaskFlutterApi {
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
 
-  void onItemAdded();
+  void onItemsUpdated();
 
   static void setUp(
     TaskFlutterApi? api, {
@@ -59,7 +59,7 @@ abstract class TaskFlutterApi {
     {
       final BasicMessageChannel<Object?>
       pigeonVar_channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.flutter_module.TaskFlutterApi.onItemAdded$messageChannelSuffix',
+        'dev.flutter.pigeon.flutter_module.TaskFlutterApi.onItemsUpdated$messageChannelSuffix',
         pigeonChannelCodec,
         binaryMessenger: binaryMessenger,
       );
@@ -68,7 +68,7 @@ abstract class TaskFlutterApi {
       } else {
         pigeonVar_channel.setMessageHandler((Object? message) async {
           try {
-            api.onItemAdded();
+            api.onItemsUpdated();
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

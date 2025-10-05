@@ -11,7 +11,7 @@ import FlutterPluginRegistrant
 
 @main
 struct AddToAppSampleApp: App {
-    @State private var flutterDependencies = FlutterDependencies(taskPresenter: TaskPresenter())
+    @State private var flutterDependencies = FlutterDependencies()
     
     var body: some Scene {
         WindowGroup {

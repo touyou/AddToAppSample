@@ -29,6 +29,8 @@ abstract class TaskHostApi {
 
   void toggleShowAddSheet();
 
+  void updateItemsIfNeeded();
+
   @SwiftFunction('toggleFavorite(id:isFavorite:)')
   void toggleFavorite(int id, bool isFavorite);
 

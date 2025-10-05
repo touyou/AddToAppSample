@@ -28,14 +28,7 @@ struct AddView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("追加", systemImage: "plus") {
                         try! presenter.addItem(title)
-                        flutterDependencies.flutterApis.forEach { $0.onItemAdded(completion: { result in
-                            switch result {
-                            case .success:
-                                break
-                            case .failure:
-                                break
-                            }
-                        })}
+                        try! presenter.updateItemsIfNeeded()
                     }
                     .buttonStyle(.glassProminent)
                     .disabled(title.isEmpty)

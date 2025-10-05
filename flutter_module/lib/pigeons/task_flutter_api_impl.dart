@@ -1,13 +1,13 @@
 import 'package:flutter_module/pigeons/pigeon_flutter_api.g.dart';
 
 class TaskFlutterApiImpl implements TaskFlutterApi {
-  TaskFlutterApiImpl({void Function()? onItemAddedCallback})
-    : _onItemAddedCallback = onItemAddedCallback;
+  TaskFlutterApiImpl({void Function()? onItemsUpdatedCallback})
+    : _onItemsUpdatedCallback = onItemsUpdatedCallback;
 
-  final void Function()? _onItemAddedCallback;
+  final void Function()? _onItemsUpdatedCallback;
 
   @override
-  void onItemAdded() {
-    _onItemAddedCallback?.call();
+  void onItemsUpdated() {
+    _onItemsUpdatedCallback?.call();
   }
 }

@@ -17,11 +17,13 @@ class HomePage extends HookWidget {
       items.value = await hostApi.getItems();
     }
 
-    void onItemAdded() {
+    void onItemsUpdated() {
       reloadItems();
     }
 
-    final flutterApi = TaskFlutterApiImpl(onItemAddedCallback: onItemAdded);
+    final flutterApi = TaskFlutterApiImpl(
+      onItemsUpdatedCallback: onItemsUpdated,
+    );
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -45,7 +47,7 @@ class HomePage extends HookWidget {
                 trailing: IconButton(
                   onPressed: () {
                     hostApi.toggleFavorite(item.id, !item.isFavorite);
-                    reloadItems();
+                    hostApi.updateItemsIfNeeded();
                   },
                   icon: Icon(
                     item.isFavorite
