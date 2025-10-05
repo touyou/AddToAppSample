@@ -49,8 +49,12 @@ class TaskPresenter: TaskHostApi {
     @ObservationIgnored
     var onUpdateItems: () -> Void = { }
     
-    init(onUpdateItems: @escaping () -> Void) {
+    @ObservationIgnored
+    var onUpdateSearchQuery: (String) -> Void = { _ in }
+    
+    init(onUpdateItems: @escaping () -> Void, onUpdateSearchQuery: @escaping (String) -> Void = { _ in }) {
         self.onUpdateItems = onUpdateItems
+        self.onUpdateSearchQuery = onUpdateSearchQuery
     }
     
     func addItem(_ title: String) throws {
@@ -66,6 +70,10 @@ class TaskPresenter: TaskHostApi {
     
     func updateItemsIfNeeded() throws {
         onUpdateItems()
+    }
+    
+    func updateSearchQuery(_ query: String) throws {
+        onUpdateSearchQuery(query)
     }
     
     func toggleShowAddSheet() throws {

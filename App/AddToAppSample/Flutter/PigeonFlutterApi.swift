@@ -48,6 +48,7 @@ class PigeonFlutterApiPigeonCodec: FlutterStandardMessageCodec, @unchecked Senda
 /// Generated protocol from Pigeon that represents Flutter messages that can be called from Swift.
 protocol TaskFlutterApiProtocol {
   func onItemsUpdated(completion: @escaping (Result<Void, PigeonError>) -> Void)
+  func onSearchQueryChanged(query queryArg: String, completion: @escaping (Result<Void, PigeonError>) -> Void)
 }
 class TaskFlutterApi: TaskFlutterApiProtocol {
   private let binaryMessenger: FlutterBinaryMessenger
@@ -63,6 +64,24 @@ class TaskFlutterApi: TaskFlutterApiProtocol {
     let channelName: String = "dev.flutter.pigeon.flutter_module.TaskFlutterApi.onItemsUpdated\(messageChannelSuffix)"
     let channel = FlutterBasicMessageChannel(name: channelName, binaryMessenger: binaryMessenger, codec: codec)
     channel.sendMessage(nil) { response in
+      guard let listResponse = response as? [Any?] else {
+        completion(.failure(createConnectionError(withChannelName: channelName)))
+        return
+      }
+      if listResponse.count > 1 {
+        let code: String = listResponse[0] as! String
+        let message: String? = nilOrValue(listResponse[1])
+        let details: String? = nilOrValue(listResponse[2])
+        completion(.failure(PigeonError(code: code, message: message, details: details)))
+      } else {
+        completion(.success(()))
+      }
+    }
+  }
+  func onSearchQueryChanged(query queryArg: String, completion: @escaping (Result<Void, PigeonError>) -> Void) {
+    let channelName: String = "dev.flutter.pigeon.flutter_module.TaskFlutterApi.onSearchQueryChanged\(messageChannelSuffix)"
+    let channel = FlutterBasicMessageChannel(name: channelName, binaryMessenger: binaryMessenger, codec: codec)
+    channel.sendMessage([queryArg] as [Any?]) { response in
       guard let listResponse = response as? [Any?] else {
         completion(.failure(createConnectionError(withChannelName: channelName)))
         return

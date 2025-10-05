@@ -7,19 +7,34 @@ import FlutterPluginRegistrant
 class FlutterDependencies {
     private let flutterEngineGroup = FlutterEngineGroup(name: "flutter engine", project: nil)
     @ObservationIgnored lazy var taskPresenter: TaskPresenter = {
-        TaskPresenter(onUpdateItems: { [weak self] in
-            guard let self = self else { return }
-            self.flutterApis.forEach { api in
-                api.onItemsUpdated(completion: { result in
-                    switch result {
-                    case .success:
-                        break
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                })
+        TaskPresenter(
+            onUpdateItems: { [weak self] in
+                guard let self else { return }
+                self.flutterApis.forEach { api in
+                    api.onItemsUpdated(completion: { result in
+                        switch result {
+                        case .success:
+                            break
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    })
+                }
+            },
+            onUpdateSearchQuery: { [weak self] query in
+                guard let self else { return }
+                self.flutterApis.forEach { api in
+                    api.onSearchQueryChanged(query: query, completion: { result in
+                        switch result {
+                        case .success:
+                            break
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    })
+                }
             }
-        })
+        )
     }()
     var flutterApis: [TaskFlutterApi]
     

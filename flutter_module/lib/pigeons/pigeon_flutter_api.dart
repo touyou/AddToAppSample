@@ -11,4 +11,6 @@ import 'package:pigeon/pigeon.dart';
 @FlutterApi()
 abstract class TaskFlutterApi {
   void onItemsUpdated();
+
+  void onSearchQueryChanged(String query);
 }

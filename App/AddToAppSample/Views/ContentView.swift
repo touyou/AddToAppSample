@@ -3,6 +3,8 @@ import Flutter
 
 struct ContentView: View {
     @Environment(FlutterDependencies.self) var flutterDependencies
+    @Environment(TaskPresenter.self) var taskPresenter: TaskPresenter
+    @State private var searchQuery: String = ""
     
     var body: some View {
         TabView {
@@ -16,10 +18,16 @@ struct ContentView: View {
                 SlideView()
             }
             Tab("Search", systemImage: "magnifyingglass", role: .search) {
-                SearchView()
+                NavigationStack {
+                    SearchView()
+                }
             }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .searchable(text: $searchQuery)
+        .onChange(of: searchQuery) {
+            try! taskPresenter.updateSearchQuery(searchQuery)
+        }
     }
 }
 
