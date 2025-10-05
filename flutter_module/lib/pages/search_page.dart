@@ -10,9 +10,7 @@ class SearchPage extends HookWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text('Search Page'),
-          ],
+          children: const <Widget>[Text('Search Page')],
         ),
       ),
     );

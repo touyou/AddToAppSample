@@ -1,12 +1,13 @@
 import 'package:pigeon/pigeon.dart';
 
-@ConfigurePigeon(PigeonOptions(
-  dartOut: 'lib/pigeons/pigeon_host_api.g.dart',
-  dartOptions: DartOptions(),
-  swiftOut: '../App/AddToAppSample/Flutter/PigeonHostApi.swift',
-  swiftOptions: SwiftOptions(),
-))
-
+@ConfigurePigeon(
+  PigeonOptions(
+    dartOut: 'lib/pigeons/pigeon_host_api.g.dart',
+    dartOptions: DartOptions(),
+    swiftOut: '../App/AddToAppSample/Flutter/PigeonHostApi.swift',
+    swiftOptions: SwiftOptions(),
+  ),
+)
 class Item {
   Item({
     required this.id,

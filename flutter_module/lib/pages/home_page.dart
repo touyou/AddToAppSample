@@ -47,7 +47,11 @@ class HomePage extends HookWidget {
                     hostApi.toggleFavorite(item.id, !item.isFavorite);
                     reloadItems();
                   },
-                  icon: Icon(item.isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart),
+                  icon: Icon(
+                    item.isFavorite
+                        ? CupertinoIcons.heart_fill
+                        : CupertinoIcons.heart,
+                  ),
                 ),
               );
             },

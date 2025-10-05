@@ -42,8 +42,14 @@ class SlidePage extends StatelessWidget {
     );
 
     return FlutterDeckApp(
-      lightTheme: FlutterDeckThemeData.fromThemeAndText(ThemeData.light(), bizUdpTextTheme),
-      darkTheme: FlutterDeckThemeData.fromThemeAndText(ThemeData.dark(), bizUdpTextTheme),
+      lightTheme: FlutterDeckThemeData.fromThemeAndText(
+        ThemeData.light(),
+        bizUdpTextTheme,
+      ),
+      darkTheme: FlutterDeckThemeData.fromThemeAndText(
+        ThemeData.dark(),
+        bizUdpTextTheme,
+      ),
       themeMode: ThemeMode.system,
       speakerInfo: const FlutterDeckSpeakerInfo(
         name: 'touyou / Fujii Yosuke',
@@ -64,9 +70,15 @@ class SlidePage extends StatelessWidget {
         FlutterDeckSlide.bigFact(title: 'Liquid Glassの本質、知ってますか？'),
         FlutterDeckSlide.bigFact(title: 'オシャレな装飾！'),
         FlutterDeckSlide.bigFact(title: 'ではありません。'),
-        FlutterDeckSlide.bigFact(title: 'あれはコンテンツ層とコントロール・ナビゲーション層を分離するためのマテリアルです。'),
-        FlutterDeckSlide.bigFact(title: 'アクセシビリティ設定に応じて、見た目が変わり、バージョン間でも調整が入ります。'),
-        FlutterDeckSlide.bigFact(title: 'Flutterにはliquid_glass_rendererというパッケージがありますが'),
+        FlutterDeckSlide.bigFact(
+          title: 'あれはコンテンツ層とコントロール・ナビゲーション層を分離するためのマテリアルです。',
+        ),
+        FlutterDeckSlide.bigFact(
+          title: 'アクセシビリティ設定に応じて、見た目が変わり、バージョン間でも調整が入ります。',
+        ),
+        FlutterDeckSlide.bigFact(
+          title: 'Flutterにはliquid_glass_rendererというパッケージがありますが',
+        ),
         FlutterDeckSlide.bigFact(title: 'これだとLiquid Glassの本質を満たせません。'),
         FlutterDeckSlide.bigFact(title: 'Flutterはやっぱり取り残されてしまうのか？'),
         FlutterDeckSlide.bigFact(title: 'アイデア：Flutterをコンテンツ層にしてしまえば良いのでは？'),

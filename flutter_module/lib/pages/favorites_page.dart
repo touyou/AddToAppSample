@@ -1,19 +1,68 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_module/pigeons/pigeon_flutter_api.g.dart';
+import 'package:flutter_module/pigeons/pigeon_host_api.g.dart';
+import 'package:flutter_module/pigeons/task_flutter_api_impl.dart';
 
 class FavoritesPage extends HookWidget {
   const FavoritesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final hostApi = TaskHostApi();
+    final items = useState<List<Item>>([]);
+
+    void reloadItems() async {
+      items.value = (await hostApi.getItems())
+          .where((item) => item.isFavorite)
+          .toList();
+    }
+
+    void onItemAdded() {
+      reloadItems();
+    }
+
+    final flutterApi = TaskFlutterApiImpl(onItemAddedCallback: onItemAdded);
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        TaskFlutterApi.setUp(flutterApi);
+        reloadItems();
+      });
+      return () {
+        TaskFlutterApi.setUp(null);
+      };
+    }, const []);
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text('Favorites Page'),
-          ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar.large(
+            title: const Text('Favorites'),
+            automaticallyImplyLeading: false,
+          ),
+          SliverList.builder(
+            itemBuilder: (context, index) {
+              final item = items.value[index];
+              return ListTile(
+                title: Text(item.title),
+                trailing: IconButton(
+                  onPressed: () {
+                    hostApi.toggleFavorite(item.id, !item.isFavorite);
+                    reloadItems();
+                  },
+                  icon: Icon(
+                    item.isFavorite
+                        ? CupertinoIcons.heart_fill
+                        : CupertinoIcons.heart,
+                  ),
+                ),
+              );
+            },
+            itemCount: items.value.length,
+          ),
+        ],
       ),
     );
   }
