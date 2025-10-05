@@ -46,6 +46,12 @@ class TaskPresenter: TaskHostApi {
     @AppStorage("items")
     var items: [StorageItem] = []
     
+    func addItem(_ title: String) throws {
+        let newItem = StorageItem(id: Int64.random(in: Int64.min..<Int64.max), title: title, isDone: false, isFavorite: false)
+        items.append(newItem)
+        showAddSheet = false
+    }
+    
     func getItems(completion: @escaping (Result<[Item], any Error>) -> Void) {
        let pigeonItems = items.map(\.item)
         completion(.success(pigeonItems))
