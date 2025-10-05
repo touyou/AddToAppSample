@@ -207,6 +207,7 @@ protocol TaskHostApi {
   func getItems(completion: @escaping (Result<[Item], Error>) -> Void)
   func toggleShowAddSheet() throws
   func updateItemsIfNeeded() throws
+  func goToDetail(id: Int64) throws
   func toggleFavorite(id: Int64, isFavorite: Bool) throws
   func toggleDone(id: Int64, isDone: Bool) throws
 }
@@ -257,6 +258,21 @@ class TaskHostApiSetup {
       }
     } else {
       updateItemsIfNeededChannel.setMessageHandler(nil)
+    }
+    let goToDetailChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_module.TaskHostApi.goToDetail\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      goToDetailChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let idArg = args[0] as! Int64
+        do {
+          try api.goToDetail(id: idArg)
+          reply(wrapResult(nil))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      goToDetailChannel.setMessageHandler(nil)
     }
     let toggleFavoriteChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_module.TaskHostApi.toggleFavorite\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {

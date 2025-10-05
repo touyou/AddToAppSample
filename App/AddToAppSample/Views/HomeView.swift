@@ -5,9 +5,21 @@ struct HomeView: View {
     
     var body: some View {
         @Bindable var presenter = presenter
-        FlutterView(initialRoute: "/")
-            .sheet(isPresented: $presenter.showAddSheet) {
-                AddView()
-            }
+        let homePath = Binding<[NavigationDestination]>(
+            get: { presenter.path[.home] ?? [] },
+            set: { presenter.path[.home] = $0 }
+        )
+        NavigationStack(path: homePath) {
+            FlutterView(initialRoute: "/")
+                .sheet(isPresented: $presenter.showAddSheet) {
+                    AddView()
+                }
+                .navigationDestination(for: NavigationDestination.self) { destination in
+                    switch destination {
+                    case .detail(let id):
+                        DetailView(id: id)
+                    }
+                }
+        }
     }
 }

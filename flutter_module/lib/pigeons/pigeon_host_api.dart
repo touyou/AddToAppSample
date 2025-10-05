@@ -31,6 +31,9 @@ abstract class TaskHostApi {
 
   void updateItemsIfNeeded();
 
+  @SwiftFunction('goToDetail(id:)')
+  void goToDetail(int id);
+
   @SwiftFunction('toggleFavorite(id:isFavorite:)')
   void toggleFavorite(int id, bool isFavorite);
 

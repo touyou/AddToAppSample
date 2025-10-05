@@ -14,8 +14,7 @@ class ItemListTile extends StatelessWidget {
       title: Text(item.title),
       enabled: !item.isDone,
       onTap: () {
-        hostApi.toggleDone(item.id, !item.isDone);
-        hostApi.updateItemsIfNeeded();
+        hostApi.goToDetail(item.id);
       },
       leading: Checkbox.adaptive(
         value: item.isDone,

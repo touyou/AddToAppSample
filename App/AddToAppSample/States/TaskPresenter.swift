@@ -37,10 +37,24 @@ extension Array<StorageItem>: @retroactive RawRepresentable {
     }
 }
 
+enum NavigationDestination: Hashable {
+    case detail(Int64)
+}
+
+enum Tabs: Equatable, Hashable {
+    case home
+    case favorites
+    case slide
+    case search
+}
+
 @MainActor
 @Observable
 class TaskPresenter: TaskHostApi {
     var showAddSheet: Bool = false
+    var tab: Tabs = .home
+    
+    var path: [Tabs: [NavigationDestination]] = [:]
     
     @ObservationIgnored
     @AppStorage("items")
@@ -55,6 +69,11 @@ class TaskPresenter: TaskHostApi {
     init(onUpdateItems: @escaping () -> Void, onUpdateSearchQuery: @escaping (String) -> Void = { _ in }) {
         self.onUpdateItems = onUpdateItems
         self.onUpdateSearchQuery = onUpdateSearchQuery
+        self.path = [
+            .home: [],
+            .favorites: [],
+            .search: [],
+        ]
     }
     
     func addItem(_ title: String) throws {
@@ -74,6 +93,10 @@ class TaskPresenter: TaskHostApi {
     
     func updateSearchQuery(_ query: String) throws {
         onUpdateSearchQuery(query)
+    }
+    
+    func goToDetail(id: Int64) throws {
+        path[tab]?.append(.detail(id))
     }
     
     func toggleShowAddSheet() throws {
