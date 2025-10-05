@@ -5,6 +5,7 @@ struct AddView: View {
         case title
     }
     
+    @Environment(FlutterDependencies.self) private var flutterDependencies: FlutterDependencies
     @Environment(TaskPresenter.self) private var presenter: TaskPresenter
     @FocusState private var focusField: Field?
     @State private var title: String = ""
@@ -27,6 +28,14 @@ struct AddView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("追加", systemImage: "plus") {
                         try! presenter.addItem(title)
+                        flutterDependencies.flutterApi?.onItemAdded(completion: { result in
+                            switch result {
+                            case .success:
+                                break
+                            case .failure:
+                                break
+                            }
+                        })
                     }
                     .buttonStyle(.glassProminent)
                     .disabled(title.isEmpty)
