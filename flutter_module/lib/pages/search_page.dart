@@ -29,7 +29,7 @@ class SearchPage extends HookWidget {
 
     void onSearchQueryChanged(String newQuery) {
       query.value = newQuery;
-      hostApi.updateItemsIfNeeded();
+      reloadItems();
     }
 
     final flutterApi = TaskFlutterApiImpl(

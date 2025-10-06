@@ -4,12 +4,12 @@ struct AddView: View {
     enum Field {
         case title
     }
-    
+
     @Environment(FlutterDependencies.self) private var flutterDependencies: FlutterDependencies
     @Environment(TaskPresenter.self) private var presenter: TaskPresenter
     @FocusState private var focusField: Field?
     @State private var title: String = ""
-    
+
     var body: some View {
         NavigationStack {
             Form {
@@ -28,7 +28,6 @@ struct AddView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("追加", systemImage: "plus") {
                         try! presenter.addItem(title)
-                        try! presenter.updateItemsIfNeeded()
                     }
                     .buttonStyle(.glassProminent)
                     .disabled(title.isEmpty)

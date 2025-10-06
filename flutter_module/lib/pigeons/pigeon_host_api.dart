@@ -29,8 +29,6 @@ abstract class TaskHostApi {
 
   void toggleShowAddSheet();
 
-  void updateItemsIfNeeded();
-
   @SwiftFunction('goToDetail(id:)')
   void goToDetail(int id);
 

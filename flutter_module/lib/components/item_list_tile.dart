@@ -20,13 +20,11 @@ class ItemListTile extends StatelessWidget {
         value: item.isDone,
         onChanged: (value) {
           hostApi.toggleDone(item.id, value ?? false);
-          hostApi.updateItemsIfNeeded();
         },
       ),
       trailing: IconButton(
         onPressed: () {
           hostApi.toggleFavorite(item.id, !item.isFavorite);
-          hostApi.updateItemsIfNeeded();
         },
         icon: Icon(
           item.isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
