@@ -205,6 +205,7 @@ class PigeonHostApiPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol TaskHostApi {
   func getItems(completion: @escaping (Result<[Item], Error>) -> Void)
+  func getIsFiltered() throws -> Bool
   func toggleShowAddSheet() throws
   func goToDetail(id: Int64) throws
   func toggleFavorite(id: Int64, isFavorite: Bool) throws
@@ -231,6 +232,19 @@ class TaskHostApiSetup {
       }
     } else {
       getItemsChannel.setMessageHandler(nil)
+    }
+    let getIsFilteredChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_module.TaskHostApi.getIsFiltered\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getIsFilteredChannel.setMessageHandler { _, reply in
+        do {
+          let result = try api.getIsFiltered()
+          reply(wrapResult(result))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      getIsFilteredChannel.setMessageHandler(nil)
     }
     let toggleShowAddSheetChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_module.TaskHostApi.toggleShowAddSheet\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {

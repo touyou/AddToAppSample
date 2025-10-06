@@ -12,9 +12,16 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     final hostApi = TaskHostApi();
     final items = useState<List<Item>>([]);
+    final isFiltered = useState<bool>(false);
 
     void reloadItems() async {
-      items.value = await hostApi.getItems();
+      isFiltered.value = await hostApi.getIsFiltered();
+      items.value = (await hostApi.getItems()).where((item) {
+        if (isFiltered.value) {
+          return !item.isDone;
+        }
+        return true;
+      }).toList();
     }
 
     void onItemsUpdated() {

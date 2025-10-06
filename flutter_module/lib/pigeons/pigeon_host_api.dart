@@ -27,6 +27,8 @@ abstract class TaskHostApi {
   @async
   List<Item> getItems();
 
+  bool getIsFiltered();
+
   void toggleShowAddSheet();
 
   @SwiftFunction('goToDetail(id:)')

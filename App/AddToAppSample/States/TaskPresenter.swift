@@ -56,6 +56,7 @@ enum Tabs: Equatable, Hashable {
 class TaskPresenter: TaskHostApi {
     var showAddSheet: Bool = false
     var tab: Tabs = .home
+    var isFiltered: Bool = false
 
     var path: [Tabs: [NavigationDestination]] = [:]
 
@@ -95,6 +96,10 @@ class TaskPresenter: TaskHostApi {
         let pigeonItems = items.map(\.item)
         completion(.success(pigeonItems))
     }
+    
+    func getIsFiltered() throws -> Bool {
+        return isFiltered
+    }
 
     func updateSearchQuery(_ query: String) throws {
         onUpdateSearchQuery(query)
@@ -102,6 +107,11 @@ class TaskPresenter: TaskHostApi {
 
     func goToDetail(id: Int64) throws {
         path[tab]?.append(.detail(id))
+    }
+    
+    func toggleFiltered() {
+        isFiltered.toggle()
+        onUpdateItems()
     }
 
     func toggleShowAddSheet() throws {
