@@ -11,6 +11,8 @@ struct SearchView: View {
         )
         NavigationStack(path: searchPath) {
             FlutterView(initialRoute: "/search")
+                .navigationTitle("Search")
+                .toolbarTitleDisplayMode(.inlineLarge)
                 .navigationDestination(for: NavigationDestination.self) { destination in
                     switch destination {
                     case .detail(let id):

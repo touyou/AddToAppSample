@@ -53,7 +53,7 @@ class SlidePage extends StatelessWidget {
       themeMode: ThemeMode.system,
       speakerInfo: const FlutterDeckSpeakerInfo(
         name: 'touyou / Fujii Yosuke',
-        description: 'Goodpatch, inc. Design Engineer',
+        description: 'Goodpatch Inc. Design Engineer',
         socialHandle: '@touyou_dev',
         imagePath: 'assets/logo.jpg',
       ),

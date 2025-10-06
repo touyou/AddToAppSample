@@ -15,6 +15,9 @@ struct ContentView: View {
             Tab("Favorites", systemImage: "heart.fill", value: .favorites) {
                 FavoritesView()
             }
+            Tab("Native", systemImage: "swift", value: .native) {
+                NativeView()
+            }
             Tab("Slide", systemImage: "inset.filled.rectangle.and.person.filled", value: .slide) {
                 SlideView()
             }

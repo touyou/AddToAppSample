@@ -45,6 +45,7 @@ enum Tabs: Equatable, Hashable {
     case home
     case favorites
     case slide
+    case native
     case search
 }
 

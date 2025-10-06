@@ -38,13 +38,14 @@ class HomePage extends HookWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar.large(title: const Text('TODO List')),
-          SliverList.builder(
-            itemBuilder: (context, index) {
-              final item = items.value[index];
-              return ItemListTile(item: item, hostApi: hostApi);
-            },
-            itemCount: items.value.length,
+          SliverSafeArea(
+            sliver: SliverList.builder(
+              itemBuilder: (context, index) {
+                final item = items.value[index];
+                return ItemListTile(item: item, hostApi: hostApi);
+              },
+              itemCount: items.value.length,
+            ),
           ),
         ],
       ),

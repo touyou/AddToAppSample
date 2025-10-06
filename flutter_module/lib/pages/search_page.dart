@@ -48,34 +48,32 @@ class SearchPage extends HookWidget {
     }, const []);
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar.large(
-            title: const Text('Search'),
-            automaticallyImplyLeading: false,
-          ),
-          if (query.value.isEmpty)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('検索してください'),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            if (query.value.isEmpty)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('検索してください'),
+                ),
               ),
-            ),
-          if (query.value.isNotEmpty && items.value.isEmpty)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('「${query.value}」に一致するアイテムはありません'),
+            if (query.value.isNotEmpty && items.value.isEmpty)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('「${query.value}」に一致するアイテムはありません'),
+                ),
               ),
+            SliverList.builder(
+              itemBuilder: (context, index) {
+                final item = items.value[index];
+                return ItemListTile(item: item, hostApi: hostApi);
+              },
+              itemCount: items.value.length,
             ),
-          SliverList.builder(
-            itemBuilder: (context, index) {
-              final item = items.value[index];
-              return ItemListTile(item: item, hostApi: hostApi);
-            },
-            itemCount: items.value.length,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

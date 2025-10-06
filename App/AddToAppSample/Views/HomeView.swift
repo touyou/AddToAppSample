@@ -11,6 +11,15 @@ struct HomeView: View {
         )
         NavigationStack(path: homePath) {
             FlutterView(initialRoute: "/")
+                .navigationTitle("TODO List")
+                .toolbarTitleDisplayMode(.inlineLarge)
+                .toolbar {
+                    ToolbarItemGroup {
+                        Button("Filter", systemImage: "line.3.horizontal.decrease") {
+                            // TODO:
+                        }
+                    }
+                }
                 .sheet(isPresented: $presenter.showAddSheet) {
                     AddView()
                 }
