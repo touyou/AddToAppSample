@@ -5,6 +5,7 @@ struct ContentView: View {
     @Environment(FlutterDependencies.self) var flutterDependencies
     @Environment(TaskPresenter.self) var taskPresenter
     @State private var searchQuery: String = ""
+    @State private var tabVisibility: Visibility = .visible
     
     var body: some View {
         @Bindable var taskPresenter = taskPresenter
@@ -20,6 +21,10 @@ struct ContentView: View {
             }
             Tab("Slide", systemImage: "inset.filled.rectangle.and.person.filled", value: .slide) {
                 SlideView()
+                    .toolbarVisibility(tabVisibility, for: .tabBar)
+                    .onTapGesture {
+                        tabVisibility = tabVisibility == .visible ? .hidden : .visible
+                    }
             }
             Tab("Search", systemImage: "magnifyingglass", value: .search, role: .search) {
                 SearchView()

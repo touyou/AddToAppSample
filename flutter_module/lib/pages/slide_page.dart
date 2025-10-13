@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
+import 'package:flutter_module/pages/slides/github_issue.dart';
 import 'package:flutter_module/pages/slides/slide00_title.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,32 +11,32 @@ class SlidePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bizUdpTextTheme = FlutterDeckTextTheme(
-      display: GoogleFonts.bizUDPGothic(
+    final notoSansTextTheme = FlutterDeckTextTheme(
+      display: GoogleFonts.notoSansJp(
         fontSize: defaultDeckTextTheme.display.fontSize,
         fontWeight: defaultDeckTextTheme.display.fontWeight,
       ),
-      header: GoogleFonts.bizUDPGothic(
+      header: GoogleFonts.notoSansJp(
         fontSize: defaultDeckTextTheme.header.fontSize,
         fontWeight: defaultDeckTextTheme.header.fontWeight,
       ),
-      title: GoogleFonts.bizUDPGothic(
+      title: GoogleFonts.notoSansJp(
         fontSize: defaultDeckTextTheme.title.fontSize,
         fontWeight: defaultDeckTextTheme.title.fontWeight,
       ),
-      subtitle: GoogleFonts.bizUDPGothic(
+      subtitle: GoogleFonts.notoSansJp(
         fontSize: defaultDeckTextTheme.subtitle.fontSize,
         fontWeight: defaultDeckTextTheme.subtitle.fontWeight,
       ),
-      bodyLarge: GoogleFonts.bizUDPGothic(
+      bodyLarge: GoogleFonts.notoSansJp(
         fontSize: defaultDeckTextTheme.bodyLarge.fontSize,
         fontWeight: defaultDeckTextTheme.bodyLarge.fontWeight,
       ),
-      bodyMedium: GoogleFonts.bizUDPGothic(
+      bodyMedium: GoogleFonts.notoSansJp(
         fontSize: defaultDeckTextTheme.bodyMedium.fontSize,
         fontWeight: defaultDeckTextTheme.bodyMedium.fontWeight,
       ),
-      bodySmall: GoogleFonts.bizUDPGothic(
+      bodySmall: GoogleFonts.notoSansJp(
         fontSize: defaultDeckTextTheme.bodySmall.fontSize,
         fontWeight: defaultDeckTextTheme.bodySmall.fontWeight,
       ),
@@ -44,11 +45,11 @@ class SlidePage extends StatelessWidget {
     return FlutterDeckApp(
       lightTheme: FlutterDeckThemeData.fromThemeAndText(
         ThemeData.light(),
-        bizUdpTextTheme,
+        notoSansTextTheme,
       ),
       darkTheme: FlutterDeckThemeData.fromThemeAndText(
         ThemeData.dark(),
-        bizUdpTextTheme,
+        notoSansTextTheme,
       ),
       themeMode: ThemeMode.system,
       speakerInfo: const FlutterDeckSpeakerInfo(
@@ -61,29 +62,33 @@ class SlidePage extends StatelessWidget {
         background: FlutterDeckBackgroundConfiguration(
           light: FlutterDeckBackground.solid(Color(0xFFF8F9F6)),
         ),
+        footer: FlutterDeckFooterConfiguration(
+          showFooter: true,
+          showSlideNumbers: true,
+          showSocialHandle: true,
+        ),
       ),
       slides: [
         const TitleSlide(),
-        FlutterDeckSlide.bigFact(title: 'こんにちは'),
-        FlutterDeckSlide.bigFact(title: '突然ですがみなさん、'),
-        FlutterDeckSlide.bigFact(title: 'Liquid Glass、ご存知ですか？'),
-        FlutterDeckSlide.bigFact(title: 'Liquid Glassの本質、知ってますか？'),
-        FlutterDeckSlide.bigFact(title: 'オシャレな装飾！'),
-        FlutterDeckSlide.bigFact(title: 'ではありません。'),
-        FlutterDeckSlide.bigFact(
-          title: 'あれはコンテンツ層とコントロール・ナビゲーション層を分離するためのマテリアルです。',
+        FlutterDeckSlide.bigFact(title: "iOS/iPadOS 26"),
+        FlutterDeckSlide.bigFact(title: "Liquid Glass、つかえていますか？"),
+        FlutterDeckSlide.quote(quote: "Liquid Glassで\nFlutterの危機が訪れるのではないか？"),
+        GithubIssueSlide(),
+        FlutterDeckSlide.bigFact(title: "そもそもLiquid Glassとは？"),
+        FlutterDeckSlide.image(
+          imageBuilder: (context) =>
+              Image.asset('assets/liquid_glass_presen.jpg'),
+          label:
+              "https://goodpatch-tech.hatenablog.com/entry/liquid_glass_and_app_intents",
         ),
-        FlutterDeckSlide.bigFact(
-          title: 'アクセシビリティ設定に応じて、見た目が変わり、バージョン間でも調整が入ります。',
+        FlutterDeckSlide.quote(
+          quote: "Liquid Glassとは\nコンテンツ層とナビゲーション・コントロール層を\n分離するための表現手法である",
         ),
-        FlutterDeckSlide.bigFact(
-          title: 'Flutterにはliquid_glass_rendererというパッケージがありますが',
+        FlutterDeckSlide.image(
+          imageBuilder: (context) => Image.asset('assets/liquid_glass_hig.png'),
+          label:
+              "https://developer.apple.com/jp/design/human-interface-guidelines/materials",
         ),
-        FlutterDeckSlide.bigFact(title: 'これだとLiquid Glassの本質を満たせません。'),
-        FlutterDeckSlide.bigFact(title: 'Flutterはやっぱり取り残されてしまうのか？'),
-        FlutterDeckSlide.bigFact(title: 'アイデア：Flutterをコンテンツ層にしてしまえば良いのでは？'),
-        FlutterDeckSlide.bigFact(title: 'やってみました'),
-        FlutterDeckSlide.bigFact(title: 'Add-to-appをゴリゴリに使います'),
       ],
     );
   }
