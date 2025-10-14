@@ -1,5 +1,8 @@
+import 'package:cupertino_native/cupertino_native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_module/pages/slides/demo_liquid.dart';
 import 'package:flutter_module/pages/slides/github_issue.dart';
 import 'package:flutter_module/pages/slides/slide00_title.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,14 +46,26 @@ class SlidePage extends StatelessWidget {
     );
 
     return FlutterDeckApp(
-      lightTheme: FlutterDeckThemeData.fromThemeAndText(
-        ThemeData.light(),
-        notoSansTextTheme,
-      ),
-      darkTheme: FlutterDeckThemeData.fromThemeAndText(
-        ThemeData.dark(),
-        notoSansTextTheme,
-      ),
+      lightTheme:
+          FlutterDeckThemeData.fromThemeAndText(
+            ThemeData.light(),
+            notoSansTextTheme,
+          ).copyWith(
+            splitSlideTheme: FlutterDeckSplitSlideThemeData(
+              leftBackgroundColor: Color(0xFFF8F9F6),
+              rightBackgroundColor: Colors.white60,
+            ),
+          ),
+      darkTheme:
+          FlutterDeckThemeData.fromThemeAndText(
+            ThemeData.dark(),
+            notoSansTextTheme,
+          ).copyWith(
+            splitSlideTheme: FlutterDeckSplitSlideThemeData(
+              leftBackgroundColor: Color(0xFFF8F9F6),
+              rightBackgroundColor: Colors.white60,
+            ),
+          ),
       themeMode: ThemeMode.system,
       speakerInfo: const FlutterDeckSpeakerInfo(
         name: 'touyou / Fujii Yosuke',
@@ -89,6 +104,7 @@ class SlidePage extends StatelessWidget {
           label:
               "https://developer.apple.com/jp/design/human-interface-guidelines/materials",
         ),
+        DemoLiquidSlide(),
       ],
     );
   }
