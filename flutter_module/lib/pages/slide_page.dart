@@ -1,7 +1,5 @@
-import 'package:cupertino_native/cupertino_native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_module/pages/slides/demo_liquid.dart';
 import 'package:flutter_module/pages/slides/github_issue.dart';
 import 'package:flutter_module/pages/slides/slide00_title.dart';
@@ -86,6 +84,7 @@ class SlidePage extends StatelessWidget {
       slides: [
         const TitleSlide(),
         FlutterDeckSlide.bigFact(title: "iOS/iPadOS 26"),
+        FlutterDeckSlide.bigFact(title: "Liquid Glass"),
         FlutterDeckSlide.bigFact(title: "Liquid Glass、つかえていますか？"),
         FlutterDeckSlide.quote(quote: "Liquid Glassで\nFlutterの危機が訪れるのではないか？"),
         GithubIssueSlide(),
@@ -105,6 +104,18 @@ class SlidePage extends StatelessWidget {
               "https://developer.apple.com/jp/design/human-interface-guidelines/materials",
         ),
         DemoLiquidSlide(),
+        FlutterDeckSlide.bigFact(title: "Liquid Glassはコンテンツ層で使うべきではない"),
+        FlutterDeckSlide.bigFact(title: "FlutterでLiquid Glassをちゃんと使うのは難しい"),
+        FlutterDeckSlide.bigFact(title: "ならば、Flutterはコンテンツ層である、と割り切ればいいのでは？"),
+        FlutterDeckSlide.bigFact(
+          title: "Flutterがコンテンツ層で、ナビゲーション・コントロール層がネイティブ",
+        ),
+        FlutterDeckSlide.image(
+          imageBuilder: (context) => Image.asset('assets/liquid_glass_hig.png'),
+          label: "Flutterがコンテンツ層で、ナビゲーション・コントロール層がネイティブ",
+        ),
+        FlutterDeckSlide.bigFact(title: "Add-to-app"),
+        FlutterDeckSlide.bigFact(title: "Demo"),
       ],
     );
   }
