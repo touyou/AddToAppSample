@@ -5,13 +5,15 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 class DemoLiquidSlide extends FlutterDeckSlideWidget {
-  const DemoLiquidSlide({super.key})
+  DemoLiquidSlide({super.key, required this.step})
     : super(
-        configuration: const FlutterDeckSlideConfiguration(
-          route: '/demo_liquid',
+        configuration: FlutterDeckSlideConfiguration(
+          route: '/demo_liquid_$step',
           title: 'デモ',
         ),
       );
+
+  final int step;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,9 @@ class DemoLiquidSlide extends FlutterDeckSlideWidget {
         return const DemoLeftWidget();
       },
       rightBuilder: (context) {
+        if (step == 0) {
+          return const SizedBox.shrink();
+        }
         return const DemoRightWidget();
       },
     );

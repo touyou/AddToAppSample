@@ -103,7 +103,8 @@ class SlidePage extends StatelessWidget {
           label:
               "https://developer.apple.com/jp/design/human-interface-guidelines/materials",
         ),
-        DemoLiquidSlide(),
+        DemoLiquidSlide(step: 0),
+        DemoLiquidSlide(step: 1),
         FlutterDeckSlide.bigFact(title: "Liquid Glassはコンテンツ層で使うべきではない"),
         FlutterDeckSlide.bigFact(title: "FlutterでLiquid Glassをちゃんと使うのは難しい"),
         FlutterDeckSlide.bigFact(title: "ならば、Flutterはコンテンツ層である、と割り切ればいいのでは？"),
