@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSBonjourServices</key>
+	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>_dartVmService._tcp</string>
+		<string>group.dev.touyou.AddToAppSample</string>
 	</array>
 </dict>
 </plist>

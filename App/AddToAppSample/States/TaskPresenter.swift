@@ -1,43 +1,5 @@
 import SwiftUI
-
-struct StorageItem: Codable {
-    let id: Int64
-    let title: String
-    let isDone: Bool
-    let isFavorite: Bool
-
-    var item: Item {
-        Item(id: id, title: title, isDone: isDone, isFavorite: isFavorite)
-    }
-}
-
-extension [StorageItem]: @retroactive RawRepresentable {
-    public init?(rawValue: String) {
-        guard let data = rawValue.data(using: .utf8),
-            let decoded = try? JSONDecoder().decode(Array<StorageItem>.self, from: data)
-        else {
-            return nil
-        }
-        self = decoded
-    }
-
-    public var rawValue: String {
-        guard
-            let data = try? JSONEncoder().encode(self),
-            let jsonString = String(data: data, encoding: .utf8)
-        else {
-            return ""
-        }
-        return jsonString
-    }
-
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        if lhs.count != rhs.count {
-            return false
-        }
-        return lhs.enumerated().allSatisfy { (index, item) in item.id == rhs[index].id }
-    }
-}
+import WidgetKit
 
 enum NavigationDestination: Hashable {
     case detail(Int64)
@@ -51,6 +13,12 @@ enum Tabs: Equatable, Hashable {
     case search
 }
 
+extension StorageItem {
+    var item: Item {
+        Item(id: id, title: title, isDone: isDone, isFavorite: isFavorite)
+    }
+}
+
 @MainActor
 @Observable
 class TaskPresenter: TaskHostApi {
@@ -61,7 +29,7 @@ class TaskPresenter: TaskHostApi {
     var path: [Tabs: [NavigationDestination]] = [:]
 
     @ObservationIgnored
-    @AppStorage("items")
+    @AppStorage("items", store: .init(suiteName: "group.dev.touyou.AddToAppSample"))
     var items: [StorageItem] = []
 
     @ObservationIgnored
@@ -89,6 +57,7 @@ class TaskPresenter: TaskHostApi {
             isFavorite: false)
         items.append(newItem)
         onUpdateItems()
+        WidgetCenter.shared.reloadAllTimelines()
         showAddSheet = false
     }
 
@@ -129,6 +98,7 @@ class TaskPresenter: TaskHostApi {
             }
         }
         onUpdateItems()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func toggleDone(id: Int64, isDone: Bool) throws {
@@ -141,5 +111,6 @@ class TaskPresenter: TaskHostApi {
             }
         }
         onUpdateItems()
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
