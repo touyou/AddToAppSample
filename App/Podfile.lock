@@ -1,8 +1,11 @@
 PODS:
+  - adaptive_platform_ui (0.1.0):
+    - Flutter
   - cupertino_native (0.0.1):
     - Flutter
   - Flutter (1.0.0)
   - FlutterPluginRegistrant (0.0.1):
+    - adaptive_platform_ui
     - cupertino_native
     - Flutter
     - path_provider_foundation
@@ -11,12 +14,15 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - adaptive_platform_ui (from `../flutter_module/.ios/.symlinks/plugins/adaptive_platform_ui/ios`)
   - cupertino_native (from `../flutter_module/.ios/.symlinks/plugins/cupertino_native/ios`)
   - Flutter (from `../flutter_module/.ios/Flutter`)
   - FlutterPluginRegistrant (from `../flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
   - path_provider_foundation (from `../flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin`)
 
 EXTERNAL SOURCES:
+  adaptive_platform_ui:
+    :path: "../flutter_module/.ios/.symlinks/plugins/adaptive_platform_ui/ios"
   cupertino_native:
     :path: "../flutter_module/.ios/.symlinks/plugins/cupertino_native/ios"
   Flutter:
@@ -27,9 +33,10 @@ EXTERNAL SOURCES:
     :path: "../flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin"
 
 SPEC CHECKSUMS:
+  adaptive_platform_ui: f54f620666d1797636f9ef06f49137ef2cc13611
   cupertino_native: 1db0611c94f9a9ea28433ed16a344dcb996370b5
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  FlutterPluginRegistrant: effbe1ae581f79358b0d10d829bf3e40a9c48e69
+  FlutterPluginRegistrant: f28f977e03e65dcd94c00ee955c0948fe9532a11
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
 
 PODFILE CHECKSUM: 9302db71edb8182b7f4600d064e822d89fb3b7bf

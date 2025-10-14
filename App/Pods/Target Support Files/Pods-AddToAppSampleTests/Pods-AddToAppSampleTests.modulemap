@@ -1,6 +1,0 @@
-framework module Pods_AddToAppSampleTests {
-  umbrella header "Pods-AddToAppSampleTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

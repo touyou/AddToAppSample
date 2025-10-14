@@ -33,6 +33,7 @@ dependencies:
   liquid_glass_renderer: ^0.1.1-dev.10
   google_fonts: ^6.3.2
   cupertino_native: ^0.1.1
+  adaptive_platform_ui: ^0.1.5+1
 
 dev_dependencies:
   flutter_test:
