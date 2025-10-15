@@ -45,6 +45,11 @@ struct LinkPreviewView: View {
                     Text("会社について")
                 }
                 VStack {
+                    QrCodeView(data: "https://goodpatch-tech.hatenablog.com")
+                        .frame(width: 100, height: 100)
+                    Text("テックブログ")
+                }
+                VStack {
                     QrCodeView(data: "https://touyou.dev/")
                         .frame(width: 100, height: 100)
                     Text("touyou.dev")
