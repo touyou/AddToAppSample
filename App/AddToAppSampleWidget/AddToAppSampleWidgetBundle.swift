@@ -11,7 +11,9 @@ import SwiftUI
 @main
 struct AddToAppSampleWidgetBundle: WidgetBundle {
     var body: some Widget {
-        AddToAppSampleWidget()
+        IntroductionWidget()
         TodoCheckWidget()
+        LinkPreviewWidget()
+        MessageWidget()
     }
 }
