@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_deck/flutter_deck.dart';
+import 'package:flutter_module/pages/slides/conclusion.dart';
 import 'package:flutter_module/pages/slides/demo_liquid.dart';
 import 'package:flutter_module/pages/slides/github_issue.dart';
 import 'package:flutter_module/pages/slides/slide00_title.dart';
+import 'package:flutter_module/pages/slides/split_code_and_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SlidePage extends StatelessWidget {
@@ -117,6 +119,34 @@ class SlidePage extends StatelessWidget {
         ),
         FlutterDeckSlide.bigFact(title: "Add-to-app"),
         FlutterDeckSlide.bigFact(title: "Demo"),
+        SplitCodeAndImageSlide(
+          route: '/demo-step-1',
+          image: Image.asset('assets/liquid_glass_hig.png'),
+          code: FlutterDeckCodeHighlight(
+            code: '''
+import 'package:pigeon/pigeon.dart';
+
+@ConfigurePigeon(
+  PigeonOptions(
+    dartOut: 'lib/pigeons/pigeon_flutter_api.g.dart',
+    dartOptions: DartOptions(),
+    swiftOut: '../App/AddToAppSample/Flutter/PigeonFlutterApi.swift',
+    swiftOptions: SwiftOptions(includeErrorClass: false),
+  ),
+)
+@FlutterApi()
+abstract class TaskFlutterApi {
+  void onItemsUpdated();
+
+  void onSearchQueryChanged(String query);
+}
+''',
+            fileName: 'pigeon_flutter_api.dart',
+            language: 'dart',
+          ),
+        ),
+        ConclusionSlide(step: 0),
+        ConclusionSlide(step: 1),
       ],
     );
   }

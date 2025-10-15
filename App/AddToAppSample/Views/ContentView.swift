@@ -19,12 +19,14 @@ struct ContentView: View {
             Tab("Native", systemImage: "swift", value: .native) {
                 NativeView()
             }
-            Tab("Slide", systemImage: "inset.filled.rectangle.and.person.filled", value: .slide) {
-                SlideView()
-                    .toolbarVisibility(tabVisibility, for: .tabBar)
-                    .onTapGesture {
-                        tabVisibility = tabVisibility == .visible ? .hidden : .visible
-                    }
+            if UIDevice.current.userInterfaceIdiom == .pad {   
+                Tab("Slide", systemImage: "inset.filled.rectangle.and.person.filled", value: .slide) {
+                    SlideView()
+                        .toolbarVisibility(tabVisibility, for: .tabBar)
+                        .onTapGesture {
+                            tabVisibility = tabVisibility == .visible ? .hidden : .visible
+                        }
+                }
             }
             Tab("Search", systemImage: "magnifyingglass", value: .search, role: .search) {
                 SearchView()
