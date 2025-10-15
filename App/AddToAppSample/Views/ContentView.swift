@@ -19,11 +19,11 @@ struct ContentView: View {
             Tab("Native", systemImage: "swift", value: .native) {
                 NativeView()
             }
-            if UIDevice.current.userInterfaceIdiom == .pad {   
+            if UIDevice.current.userInterfaceIdiom == .pad {
                 Tab("Slide", systemImage: "inset.filled.rectangle.and.person.filled", value: .slide) {
                     SlideView()
                         .toolbarVisibility(tabVisibility, for: .tabBar)
-                        .onTapGesture {
+                        .onTapGesture(count: 2) {
                             tabVisibility = tabVisibility == .visible ? .hidden : .visible
                         }
                 }

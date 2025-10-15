@@ -1,3 +1,5 @@
+import 'package:adaptive_platform_ui/adaptive_platform_ui.dart';
+import 'package:cupertino_native/components/switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_module/pigeons/pigeon_flutter_api.g.dart';
@@ -41,20 +43,45 @@ class DetailPage extends HookWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 64.0, vertical: 16.0),
           child: Column(
             spacing: 16,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 item.value?.title ?? '',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               Row(
-                spacing: 8,
+                spacing: 32,
                 children: [
-                  Text('Favorite: ${item.value?.isFavorite}'),
-                  Spacer(),
-                  Text('Done: ${item.value?.isDone}'),
+                  SizedBox(width: 100, child: Text('Favorite:')),
+                  Expanded(
+                    child: Center(
+                      child: CNSwitch(
+                        value: item.value?.isFavorite ?? false,
+                        onChanged: (value) {
+                          hostApi.toggleFavorite(id, value);
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                spacing: 32,
+                children: [
+                  SizedBox(width: 100, child: Text('Done:')),
+                  Expanded(
+                    child: Center(
+                      child: AdaptiveSwitch(
+                        value: item.value?.isDone ?? false,
+                        onChanged: (value) {
+                          hostApi.toggleDone(id, value);
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
               Spacer(),
