@@ -46,6 +46,7 @@ class SlidePage extends StatelessWidget {
     );
 
     return FlutterDeckApp(
+      // lightモード固定で使う
       lightTheme:
           FlutterDeckThemeData.fromThemeAndText(
             ThemeData.light(),
@@ -53,17 +54,11 @@ class SlidePage extends StatelessWidget {
           ).copyWith(
             splitSlideTheme: FlutterDeckSplitSlideThemeData(
               leftBackgroundColor: Color(0xFFF8F9F6),
-              rightBackgroundColor: Colors.white60,
+              rightBackgroundColor: Colors.white,
+              rightColor: Colors.black,
             ),
-          ),
-      darkTheme:
-          FlutterDeckThemeData.fromThemeAndText(
-            ThemeData.dark(),
-            notoSansTextTheme,
-          ).copyWith(
-            splitSlideTheme: FlutterDeckSplitSlideThemeData(
-              leftBackgroundColor: Color(0xFFF8F9F6),
-              rightBackgroundColor: Colors.white60,
+            codeHighlightTheme: FlutterDeckCodeHighlightThemeData(
+              backgroundColor: Color(0xFFF8F9F6),
             ),
           ),
       themeMode: ThemeMode.system,
@@ -228,18 +223,16 @@ abstract class TaskFlutterApi {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Opacity(
-                opacity: 0.5,
-                child: FlutterDeckCodeHighlight(
-                  code: '''
+              FlutterDeckCodeHighlight(
+                code: '''
 @HostApi()
 abstract class TaskHostApi {
-
+  @async
+  List<Item> getItems();
 }
 ''',
-                  fileName: 'pigeon_host_api.dart',
-                  language: 'dart',
-                ),
+                fileName: 'pigeon_host_api.dart',
+                language: 'dart',
               ),
               FlutterDeckCodeHighlight(
                 code: '''

@@ -18,6 +18,7 @@ struct AddToAppSampleApp: App {
             ContentView()
                 .environment(flutterDependencies)
                 .environment(flutterDependencies.taskPresenter)
+                .colorScheme(.light)
         }
     }
 }
