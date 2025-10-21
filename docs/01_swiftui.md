@@ -6,7 +6,22 @@
 - Tab を隠すには`.toolbarVisibility(.hidden, for: .tabBar)`を使用
 - サイドバーを有効化するには`.tabViewStyle(.sidebarAdaptable)`を`TabView`に対して指定する
 - サーチタブからの検索を有効化するには`Tab(role: .search)`を使った上で`.searchable`を`TabView`に対して指定する
--
+- 全体の SSoT を`@Observable`にする
+  - `@AppStorage`など管理対象にしたくないものには`@ObservationIgnored`を指定する
+- App Groups を AppStorage で使うには`@AppStorage("key", store: .init(suiteName: "group.identifier"))`のように指定する
+- 画面遷移は`[Tabs: [NavigationDestination]]`のように辞書で管理する
+  - 個別のタブでは以下のように Binding を定義しておく
+
+```swift
+var body: some View {
+  @Bindable var presenter = presenter
+  let homePath = Binding<[NavigationDestination]>(
+    get: { presenter.path[.home] ?? [] },
+    set: { presenter.path[.home] = $0 }
+  )
+  // ...
+}
+```
 
 ## Widget について
 
@@ -16,3 +31,4 @@
   - この時 Provider は`AppIntentTimelineProvider`を利用
   - `WidgetConfiguration`は`AppIntentConfiguration`を利用
 - メッセージを表示するだけなどであれば`StaticConfiguration`を利用するのが良い
+- データを明示して更新したい際は`WidgetCenter.shared.reloadAllTimelines()`を利用する
