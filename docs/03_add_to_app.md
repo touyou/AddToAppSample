@@ -1,4 +1,4 @@
-# Add-to-app について
+# Add-to-app に関する話
 
 - データ通信は[Pigeon](https://pub.dev/packages/pigeon)を使用
 - これによってデータ連携で考えることが減る

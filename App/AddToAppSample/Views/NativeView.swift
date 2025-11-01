@@ -20,6 +20,9 @@ struct NativeView: View {
             .navigationTitle("TODO List")
             .toolbarTitleDisplayMode(.inlineLarge)
             .toolbar {
+                ToolbarItem(placement: .title) {
+                    Text("")
+                }
                 ToolbarItemGroup {
                     Button("Filter", systemImage: "line.3.horizontal.decrease") {
                         // TODO:
